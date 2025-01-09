@@ -1,0 +1,52 @@
+<h1 class="text-center mb-4">SET-B</h1>
+    <h1 class="text-center mb-4">User  Registration</h1>
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" id="name" formControlName="name" class="form-control" required>
+      <span *ngIf="registrationForm.get('name')?.invalid && registrationForm.get('name')?.touched" class="text-danger"><br>
+        Name is required.
+      </span><br>
+
+      <label for="email" class="form-label">Email</label>
+      <input type="email" id="email" formControlName="email" class="form-control" required>
+      <span *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched" class="text-danger"><br>
+        <span *ngIf="registrationForm.get('email')?.hasError('required')">Email is required.</span>
+        <span *ngIf="registrationForm.get('email')?.hasError('email')">Invalid email format.</span>
+      </span><br>
+
+      <label for="lastName" class="form-label">Last Name</label>
+      <input type="text" id="lastName" formControlName="lastName" class="form-control" required>
+      <span *ngIf="registrationForm.get('lastName')?.invalid && registrationForm.get('lastName')?.touched" class="text-danger"><br>
+        Last Name is required.
+      </span><br>
+
+      <label for="mobile" class="form-label">Mobile Number</label>
+      <input type="text" id="mobile" formControlName="mobile" class="form-control" required pattern="^[0-9]*$">
+      <span *ngIf="registrationForm.get('mobile')?.invalid && registrationForm.get('mobile')?.touched" class="text-danger"><br>
+        <span *ngIf="registrationForm.get('mobile')?.hasError('required')">Mobile Number is required.</span><br>
+        <span *ngIf="registrationForm.get('mobile')?.hasError('pattern')">Mobile Number must be numeric.</span>
+      </span><br>
+
+      <label for="username" class="form-label">Username</label>
+      <input type="text" id="username" formControlName="username" class="form-control" required>
+      <span *ngIf="registrationForm.get('username')?.invalid && registrationForm.get('username')?.touched" class="text-danger"><br>
+        <span *ngIf="registrationForm.get('username')?.hasError('required')">Username is required.</span>
+      </span><br>
+
+      <label for="password" class="form-label">Password</label>
+      <input type="password" id="password" formControlName="password" class="form-control" required>
+      <span *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched" class="text-danger"><br>
+        <span *ngIf="registrationForm.get('password')?.hasError('required')">Password is required.</span><br>
+        <span *ngIf="registrationForm.get('password')?.hasError('strongPassword')">
+          Password must be at least 8 characters long and include uppercase letters, lowercase letters, numbers, and special characters.
+        </span>
+      </span><br>
+
+      <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid">Register</button>
+    </form>
+
+    <span *ngIf="registrationMessage" class="alert alert-success mt-4 text-center">
+      {{ registrationMessage }}
+    </span>
+
+    <a routerLink="" class="btn btn-primary">BACK TO Q&A</a>
